@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'blog_display.css' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{blog.title}}</title>
+    <!-- Fonts -->
+    {% comment %} <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"> {% endcomment %}
+    <!-- CSS -->
+  </head>
+  <body>
+    <main class="container">
+
+      <!-- Left Column / Headphones Image -->
+      <div class="left-column">
+        <img src="{{blog.blog_img.url}}">
+      </div>
+
+      <!-- Right Column -->
+      <div class="right-column">
+
+        <!-- Product Description -->
+        <div class="product-description">
+          <span>{{blog.created_at}}</span>
+          <h1>{{blog.title}}</h1>
+          <p>{{blog.description}}</p>
+        </div>
+
+        <!-- Product Pricing -->
+        <div class="product-price">
+          <span>148$</span>
+          <a href="#" class="cart-btn">Add to cart</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+  </body>
+</html>

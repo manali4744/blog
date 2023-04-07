@@ -1,0 +1,59 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block My_blog %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Free Web tutorials">
+    <title>My Cart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+<style>
+    {% comment %} img{
+        height: 200px;
+        width: 150;
+        object-fit: cover;
+        border-radius: 50%;
+    } {% endcomment %}
+</style>
+<body>
+    
+        <div class="container-fluid mt-5">
+            <div class='card-container d-flex flex-wrap'>
+            {% for i in blog %}
+            <a href="{% url 'blog-display' i.id %}" style="text-decoration: none; color:black">
+            <div class="col-sm-2 justify-content-sm-evenly mt-5 m-lg-5">
+                <div class="card justify-content-center h-75" style="width: 18rem;">
+                        <img class="card-img-top mx-auto" src="{{i.blog_img.url}}" alt="Card image cap" style="width: 200px; height: 200px">
+                        <div class="card-body">
+                            <h5 class="card-title">{{i.title}}</h5>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Created at {{i.created_at}}</small>
+                            <small class="text-muted">Updated at {{i.update_at}}</small>
+                        </div>
+                    </div>
+                </div>
+            </a>
+                {% endfor %}
+            </div>
+        </div>
+   
+</body>
+</html>
+
+
+
+
+
+{% endblock  %}
+
+
+
+
+
+
+

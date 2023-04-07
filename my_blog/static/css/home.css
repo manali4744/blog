@@ -1,0 +1,7 @@
+.circle-image {
+  height: auto;
+    width: auto;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
