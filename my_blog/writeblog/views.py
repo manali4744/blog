@@ -25,6 +25,20 @@ def WriteBlogView(request):
     context={'form':form}
     return render(request, 'write_blog.html', context)
 
+@login_required(login_url='/signin/')
+def UpdateBlogView(request, pk):
+    form = BlogWriteForm()
+    writeblog = BlogWrite.objects.get(id=pk)
+    form = BlogWriteForm(initial={'title': writeblog.title, 'description':writeblog.description, 'blog_img':writeblog.blog_img})
+    if request.method == 'POST':
+        form = BlogWriteForm(request.POST, request.FILES, instance=writeblog)
+        if form.is_valid():
+            form.save()
+           
+            return redirect('home')
+    context={'form': form}
+    return render(request, 'write_blog.html', context)
+
 def BlogDetailView(request,pk):
     blog = BlogWrite.objects.get(id=pk)
     context={
@@ -32,18 +46,19 @@ def BlogDetailView(request,pk):
     }
     return render(request, 'blog_display.html', context)
 
-
-
-
-
-# def accountSetting(request):
-#     customer = request.user.customer
-#     form = CustomerForm(instance=customer)
-
-#     if request.method == 'POST':
-#         form = CustomerForm(request.POST, request.FILES, instance=customer)
-#         if form.is_valid():
-#             form.save()
-
-#     context = {'form': form}
-#     return render(request, 'accounts/account_settings.html', context)
+@login_required(login_url='/signin/')
+def LikeView(request, pk):
+    user= request.user
+    blog = BlogWrite.objects.get(id=pk)
+    # print(blog.like.all())
+    # print("before")
+    if user in blog.like.all():
+        blog.like.remove(user)
+        blog.save()
+        # print(blog.like.all())
+    else:
+        blog.like.add(user)  
+        blog.save()
+    # print("after")
+    # print(blog.like.all().count())
+    return redirect('home')

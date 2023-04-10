@@ -1,27 +1,11 @@
 {% extends 'navbar.html' %}
 {% load static %}
-
-
-{% block user-login %}
+{% block user-login%}
 
 <li class="nav-item">
-    <a class="nav-link blog_nav_text" href="#">Profile</a>
+    <a class="nav-link blog_nav_text" href="{% url 'signin' %}">SignIn</a>
   </li>
-
-<li class="nav-item">
-    <a class="nav-link blog_nav_text" href="{% url 'myblog' %}">My_blog</a>
-  </li>
- 
-<li class="nav-item">
-    <a class="nav-link blog_nav_text" href="#" style="">{{name}}</a>
-</li>
-
-<li class="nav-item">
-    <a class="nav-link blog_nav_text" href="{% url 'signout' %}">SignOut</a>
-</li>
-
 {% endblock user-login %}
-
 
 {% block My_blog %}
 <!DOCTYPE html>
@@ -29,29 +13,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Free Web tutorials">
-    <title>My Cart</title>
+    <title>Iblog</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
 </head>
 <body>
     
         <div class="container-fluid mt-5">
             <div class='card-container d-flex flex-wrap'>
             {% for i in blog %}
-          
+            <a href="{% url 'blog-display' i.id %}" style="text-decoration: none; color:black">
             <div class="col-sm-2 justify-content-sm-evenly mt-5 m-lg-5">
-                <div class="card justify-content-center h-100" style="width: 18rem;">
+                <div class="card justify-content-center h-75" style="width: 18rem;">
                         <img class="card-img-top mx-auto" src="{{i.blog_img.url}}" alt="Card image cap" style="width: 200px; height: 200px">
                         <div class="card-body">
-                        <a href="{% url 'blog-display' i.id %}" style="text-decoration: none; color:black">
                             <h5 class="card-title">{{i.title}}</h5>
-                        </a>
-                        <a href="{% url 'blog-like' i.id %}">
-                            <button class="like-button">
-                                <span class="like-icon">&#x2665;</span>
-                                <span class="like-text">{{i.like.count}}</span>
-                              </button>  
-                            </a>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">Created at {{i.created_at}}</small>
@@ -59,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-            
+            </a>
                 {% endfor %}
             </div>
         </div>
@@ -67,14 +43,4 @@
 </body>
 </html>
 
-
 {% endblock  %}
-
-
-
-
-
-
-
-
-

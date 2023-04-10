@@ -19,17 +19,20 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto ">
         <li class="nav-item active">
-          <a class="nav-link blog_nav_text" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link blog_nav_text" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
         </li>
+        {% block user-login %}
         <li class="nav-item">
           <a class="nav-link blog_nav_text" href="#">Profile</a>
         </li>
+        
         <li class="nav-item">
-          <a class="nav-link blog_nav_text" href="#">My_blog</a>
+          <a class="nav-link blog_nav_text" href="{% url 'myblog' %}">My_blog</a>
         </li>
         <li class="nav-item">
           <a class="nav-link blog_nav_text" href="{% url 'signin' %}">SignIn</a>
         </li>
+        {% endblock user-login %}
       </ul>
 
       <ul class="navbar-nav ml-auto">
@@ -42,6 +45,10 @@
   {% block My_blog%}
   
   {% endblock %}
+
+  {% block logged-user-blog %}
+
+  {% endblock%}
 
   <!-- Include Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

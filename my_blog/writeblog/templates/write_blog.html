@@ -17,12 +17,14 @@
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label for="title">Title:</label>
-                <input type="text" name="title" id="title" required>
+               
+                {{form.title}}
                 <label for="description">Description:</label>
-                <textarea name="description" id="description" rows="5" required></textarea>
+                
+                {{form.description}}
                 <label for="file">Upload File:</label>
                 <div>
-                    <input type="file" name="blog_img" id="file">
+                    {{form.blog_img}}
                 </div>
                 <div class="container justify-content-center">
                 <input type="submit" value="Submit">
