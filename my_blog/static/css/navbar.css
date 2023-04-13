@@ -1,0 +1,17 @@
+.blog_nav{
+    background-color: rgb(111, 189, 212);
+    color: black;
+}
+
+a.blog_nav_text{
+    color: black;
+    font-size: large;
+}
+
+.circle-image {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
