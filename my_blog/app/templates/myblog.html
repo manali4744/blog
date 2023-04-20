@@ -1,0 +1,48 @@
+
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+<body>
+         <div class="container-fluid mt-5">
+            <div class='card-container d-flex flex-wrap'>
+            {% for i in myblog %}
+            <div class="col-sm-2 justify-content-sm-evenly mt-5 m-lg-5">
+                <div class="card justify-content-center h-100" >
+                        <img class="card-img-top mx-auto" src="{{i.blog_img.url}}" alt="Card image cap" style="width: 200px; height: 200px">
+                        <div class="card-body">
+                            <h5 class="card-title">{{i.title}}</h5>
+                            <a id = 'delete' href="{% url 'delete-my-blog' i.id %}" class="btn btn-danger">Delete</a>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Created at {{i.created_at}}</small>
+                            <small class="text-muted">Updated at {{i.update_at}}</small>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    document.getElementById("delete").addEventListener("click", function() {
+            
+                      var confirmed = confirm("Are you sure you want to Remove Blog?");
+                    
+                      if (confirmed) {
+            
+                        alert("Action confirmed!");
+                      } else {
+            
+                        alert("Action cancelled.");
+                      }
+                    });
+                    </script>
+            
+                {% endfor %}
+            </div>
+        </div>
+</body>
+</html>
+
+

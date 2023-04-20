@@ -1,0 +1,27 @@
+.circle-image {
+  height: auto;
+    width: auto;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .like-button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .like-icon {
+    font-size: 18px;
+    color: #ff0000;
+    margin-right: 5px;
+  }
+  
+  .like-text {
+    font-size: 16px;
+  }
+  
+  
